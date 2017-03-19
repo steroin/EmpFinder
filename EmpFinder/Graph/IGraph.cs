@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace EmpFinder.Graph
 {
-    interface IGraph<WeightType> where WeightType : IWeightable<WeightType>
+    interface IGraph<EdgeInfo>
     {
-        void AddEdge(int vertexA, int vertexB, WeightType weight);
+        void AddEdge(int vertexA, int vertexB, double weight, EdgeInfo info);
         int[] FindPaths(int vertex);
         int[] FindShortestPath(int vertexA, int vertexB);
-        WeightType GetWeight(int vertexFrom, int vertexTo);
+        double GetWeight(int vertexFrom, int vertexTo);
+        EdgeInfo GetEdgeInfo(int vertexA, int vertexB);
 
     }
 }

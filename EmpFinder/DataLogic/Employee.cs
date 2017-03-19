@@ -8,5 +8,19 @@ namespace EmpFinder
 {
     class Employee
     {
+        public string Name { get; }
+        public string Title { get; }
+        public List<Employee> Adjacents { get; }
+        public Employee(string name, string title)
+        {
+            Name = name;
+            Title = title;
+            Adjacents = new List<Employee>();
+        }
+
+        public override string ToString()
+        {
+            return Title + " " + Name;
+        }
     }
 }

@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace EmpFinder.Graph
 {
-    public class AdjacencyListGraph : IGraph
+    public class AdjacencyListGraph<EdgeInfo> : IGraph<EdgeInfo>
     {
         Dictionary<int, double>[] vertices;
         bool directed;
+        EdgeInfo[,] edgeInfos;
 
         public AdjacencyListGraph(int n)
         {
             vertices = new Dictionary<int, double>[n];
             for (int i = 0; i < n; i++) vertices[i] = new Dictionary<int, double>();
+            edgeInfos = new EdgeInfo[n,n];
         }
 
         public AdjacencyListGraph(int n, bool d=false)
@@ -23,7 +25,7 @@ namespace EmpFinder.Graph
             vertices = new Dictionary<int, double>[n];
             directed = d;
         }
-        public void AddEdge(int vertexA, int vertexB, double weight)
+        public void AddEdge(int vertexA, int vertexB, double weight, EdgeInfo info)
         {
             if (vertexA < 0 || vertexA >= vertices.Length) throw new VertexNotExistsException(vertexA);
             else if (vertexB < 0 || vertexB >= vertices.Length) throw new VertexNotExistsException(vertexB);
@@ -31,12 +33,15 @@ namespace EmpFinder.Graph
             if (vertices[vertexA].Keys.Contains(vertexB))
                 vertices[vertexA][vertexB] = weight;
             else vertices[vertexA].Add(vertexB, weight);
+
+            edgeInfos[vertexA, vertexB] = info;
             
             if (!directed)
             {
                 if (vertices[vertexB].Keys.Contains(vertexA))
                     vertices[vertexB][vertexA] = weight;
                 else vertices[vertexB].Add(vertexA, weight);
+                edgeInfos[vertexB, vertexA] = info;
             }
         }
 
@@ -75,7 +80,6 @@ namespace EmpFinder.Graph
                     }
                 }
             }
-            foreach(double d in distances)Console.WriteLine(d);
             return prev;
         }
 
@@ -94,6 +98,11 @@ namespace EmpFinder.Graph
             }
 
             return list.ToArray();
+        }
+
+        public EdgeInfo GetEdgeInfo(int vertexA, int vertexB)
+        {
+            return edgeInfos[vertexA, vertexB];
         }
 
         public double GetWeight(int vertexFrom, int vertexTo)

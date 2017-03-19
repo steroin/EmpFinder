@@ -74,6 +74,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataLogic\DataReader.cs" />
+    <Compile Include="DataLogic\Employee.cs" />
     <Compile Include="Graph\AdjacencyListGraph.cs" />
     <Compile Include="Graph\AllowDuplicateComparer.cs" />
     <Compile Include="Graph\IGraph.cs" />
@@ -85,6 +87,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
