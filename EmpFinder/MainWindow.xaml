@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmpFinder"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="EmpFinder" Height="495" Width="558" MinWidth="2" ResizeMode="CanMinimize">
+    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,21,0,0" Width="548" Height="441">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="21"/>
+            <RowDefinition Height="43"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="39"/>
+            <RowDefinition Height="268"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="8"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="27"/>
+            <ColumnDefinition Width="175"/>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="175"/>
+            <ColumnDefinition Width="27"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="labelTitle" Content="Wyszukiwarka połączeń między pracownikami PWr" Grid.Column="1" HorizontalAlignment="Left" Margin="0,4,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="3" FontSize="20" Height="37" Width="457"/>
+        <Label x:Name="labelFirstEmployee" Content="Pierwszy pracownik:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="113"/>
+        <Label x:Name="labelSecondEmployee" Content="Drugi pracownik:" Grid.Column="3" HorizontalAlignment="Left" Margin="10,3,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="99" Grid.RowSpan="2"/>
+        <TextBox x:Name="textBoxFirstEmployee" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,6,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+        <TextBox x:Name="textBoxSecondEmployee" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="10,6,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="buttonFind" Content="Szukaj połączenia" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="108" Height="29"/>
+        <Button x:Name="buttonClear" Content="Wyczyść" Grid.Column="2" HorizontalAlignment="Left" Margin="22,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="75" Height="20"/>
+        <ScrollViewer Grid.Column="1" HorizontalAlignment="Left" Height="258" Grid.Row="4" VerticalAlignment="Top" Width="468" Grid.ColumnSpan="3" ClipToBounds="True" VerticalScrollBarVisibility="Auto">
+            <TextBox x:Name="textBoxConsole" TextWrapping="Wrap" RenderTransformOrigin="0.401,-0.018" Height="256" Width="468"/>
+        </ScrollViewer>
+        <Button x:Name="buttonEmployeesList" Content="Lista pracowników" Grid.Column="3" HorizontalAlignment="Left" Margin="58,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="103" Height="20"/>
     </Grid>
 </Window>
