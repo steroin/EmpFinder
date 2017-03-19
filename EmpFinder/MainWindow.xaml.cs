@@ -23,6 +23,7 @@ namespace EmpFinder
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
     }
 }
