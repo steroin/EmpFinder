@@ -31,7 +31,7 @@
         <Button x:Name="buttonFind" Content="Szukaj połączenia" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="108" Height="29" Command="{Binding SearchForConnections}"/>
         <Button x:Name="buttonClear" Content="Wyczyść" Grid.Column="2" HorizontalAlignment="Left" Margin="22,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="75" Height="20" Command="{Binding ClearConsole}"/>
         <ScrollViewer Grid.Column="1" HorizontalAlignment="Left" Height="258" Grid.Row="4" VerticalAlignment="Top" Width="468" Grid.ColumnSpan="3" ClipToBounds="True" VerticalScrollBarVisibility="Auto">
-            <TextBox x:Name="textBoxConsole" Text="{Binding ConsoleOutput}" TextWrapping="Wrap" RenderTransformOrigin="0.401,-0.018" Height="256" Width="468"/>
+            <TextBox x:Name="textBoxConsole" Text="{Binding ConsoleOutput}" TextWrapping="Wrap" RenderTransformOrigin="0.401,-0.018" Height="256" Width="468" IsReadOnly="True"/>
         </ScrollViewer>
         <Button x:Name="buttonEmployeesList" Content="Lista pracowników" Grid.Column="3" HorizontalAlignment="Left" Margin="58,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="103" Height="20" Command="{Binding ShowEmployeesList}"/>
     </Grid>

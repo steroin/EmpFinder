@@ -8,11 +8,13 @@ namespace EmpFinder
 {
     class Employee
     {
+        public int ID { get; }
         public string Name { get; }
         public string Title { get; }
         public List<Employee> Adjacents { get; }
-        public Employee(string name, string title)
+        public Employee(int id, string name, string title)
         {
+            ID = id;
             Name = name;
             Title = title;
             Adjacents = new List<Employee>();

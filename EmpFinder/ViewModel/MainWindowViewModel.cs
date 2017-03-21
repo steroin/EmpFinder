@@ -81,7 +81,41 @@ namespace EmpFinder
 
         void DoSearchForConnections(object parameter)
         {
-            MessageBox.Show("DoSearchForConnections, FirstEmployee: " + FirstEmployee + ", SecondEmployee: " + SecondEmployee);
+            if (FirstEmployee == "" || SecondEmployee == "" || FirstEmployee == null || SecondEmployee == null) return;
+
+            Employee first = FindEmployeeByName(FirstEmployee);
+            Employee second = FindEmployeeByName(SecondEmployee);
+
+            DoClearConsole(null);
+
+            if (first == null)
+            {
+                ConsoleOutput = "Nie znaleziono pracownika '" + FirstEmployee + "'";
+                return;
+            }
+            if (second == null)
+            {
+                ConsoleOutput = "Nie znaleziono pracownika '" + SecondEmployee + "'";
+                return;
+            }
+
+            int[] path = graph.FindShortestPath(first.ID, second.ID);
+
+            if(path == null)
+            {
+                ConsoleOutput = "Nie istnieje połączenie między " + first + ", a " + second + ".";
+                return;
+            }
+
+            for (int i = 0; i < path.Length; i++)
+            {
+                if (i + 1 < path.Length)
+                {
+                    int pubNum = graph.GetEdgeInfo(path[i], path[i + 1]);
+                    ConsoleOutput += (i + 1) + ". " + employees[path[i]] + " -> " + employees[path[i + 1]] + " ("+publicationsNames[pubNum]+")\n";
+                }
+            }
+
         }
         bool CanSearchForConnections(object parameter)
         {
@@ -90,21 +124,42 @@ namespace EmpFinder
         void DoClearConsole(object parameter)
         {
             ConsoleOutput = "";
-            MessageBox.Show("DoClearConsole, FirstEmployee: " + FirstEmployee + ", SecondEmployee: " + SecondEmployee);
         }
         bool CanClearConsole(object parameter)
         {
-            return true;
+            return ConsoleOutput!="";
         }
         void DoShowEmployeesList(object parameter)
         {
-            MessageBox.Show("DoShowEmployeeList, FirstEmployee: "+FirstEmployee+", SecondEmployee: "+SecondEmployee);
+            DoClearConsole(null);
+            foreach(var e in employees)
+            {
+                ConsoleOutput += (e.Key+1) + ". " + e.Value.Title + " " + e.Value.Name + "\n";
+            }
         }
         bool CanShowEmployeesList(object parameter)
         {
             return true;
         }
+        private Employee FindEmployeeByName(string name)
+        {
+            Employee ret = null;
+            int found = 0;
+            string lowerName = name.Trim().ToLower();
 
+            foreach (var e in employees.Values)
+            {
+                string[] arr = e.Name.Trim().ToLower().Split(' ');
+                Console.WriteLine("checking: "+name+" contains "+arr[0]+" "+arr[1]);
+                if (lowerName.Contains(arr[0]) && lowerName.Contains(arr[1]))
+                {
+                    if (found > 0) return null;
+                    found++;
+                    ret = e;
+                }
+            }
 
+            return ret;
+        }
     }
 }

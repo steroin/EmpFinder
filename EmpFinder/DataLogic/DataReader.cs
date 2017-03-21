@@ -66,7 +66,7 @@ namespace EmpFinder.Data
                 while (line != null)
                 {
                     string[] arr = line.Split(',');
-                    employees.Add(int.Parse(arr[0]), new Employee(arr[2], arr[1]));
+                    employees.Add(int.Parse(arr[0]), new Employee(int.Parse(arr[0]), arr[2], arr[1]));
                     line = reader.ReadLine();
                 }
                 reader.Close();
@@ -80,7 +80,7 @@ namespace EmpFinder.Data
             var publications = new Dictionary<int, string>();
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("EmpFinder.Data.Publications.names.txt"))
             {
-                var reader = new StreamReader(stream);
+                var reader = new StreamReader(stream, Encoding.Unicode);
                 string line = reader.ReadLine();
 
                 while (line != null)
